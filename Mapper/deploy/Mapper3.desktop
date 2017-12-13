@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Name=Mapper3
+Comment=MobileRobots map editor
+Icon=/usr/local/Mapper3/icons/mapper3_icon.png
+TryExec=/usr/local/Mapper3/bin/Mapper3
+Path=/usr/local/Mapper3/bin
+Exec=/usr/local/Mapper3/bin/Mapper3
+Categories=Application;Science

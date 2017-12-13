@@ -1,0 +1,630 @@
+Mapper3 2.2.5
+February 12, 2009
+-------------------------
+
+Miscellaneous bug fixes:
+ -- Updated the ScanStudio library (revision 2).
+
+
+Mapper3 2.2.4
+January 23, 2008
+----------------
+
+Miscellaneous bug fixes:
+
+ -- Fixed a crash that occurred when a camera mode update was 
+    received from the robot server.
+ -- Corrected an error that caused Mapper3 to hang when 
+    the Map Insert... feature was used but no points were 
+    selected for insertion.
+ -- Updated the ScanStudio library (revision 51).
+ -- Improved the detection and reporting of errors during the 
+    processing of Aria maps.  If an erroneous file line is 
+    encountered, the user is warned that saving the map file 
+    may have unintended consequences.  A new Details section 
+    in the warning displays all file lines that were not 
+    successfully processed.
+ -- Fixed an error in the Main Menu, Map, Map Data menu.  
+    When the map contains data for multiple scan types, the 
+    initial state of the scan type checkboxes is now correct.
+ -- Improved the display and interaction of selected map items.  
+    Selected poses are now always drawn on top with an opaque 
+    background.  When the mouse enters a selected item, the 
+    item gains focus (i.e. it will be picked if the mouse is 
+    pressed).  This should make it easier to interact with 
+    multiple overlapping items.
+
+
+Mapper3 2.2.2-1
+October 23, 2008
+-------------------------
+
+Important Changes:
+ -- Now supports multiple laser scan devices in
+    .2d scan log files and in map files (does not affect most users).
+ -- When Mapper3 is used to edit the current map on the 
+    robot or central server, then it may send incremental 
+    changes to the server instead of sending the entire map file.  
+    These changes will be sent when the Save button is clicked.  
+    If they are successfully processed by the server, then 
+    Mapper3's watch cursor will revert to normal and the 
+    "Sending File" progress window will not be displayed.
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Corrected a bug that occurred when a map file is saved 
+    as an image (e.g. JPEG file).  The goal names are no 
+    longer written in a ridiculously large font.
+ -- Improved the performance of downloading files from the 
+    central server.  
+ -- Corrected an error that caused duplicate file names to 
+    appear when selecting a map file on the robot server.
+ -- Fixed crash that occurred when a robot disconnected
+    from the central server.
+ -- Warn the user if an attempt is made
+    to open a specific robot's current map, but that map is really
+    being controlled by a central server.
+ -- Fixed an error in the Main Menu, Map, Map Data menu.  When 
+    the map contains data for multiple scan types, the initial 
+    state of the scan type checkboxes is now correct.
+ -- Corrected the "Find on Map" item in the goal list 
+    context menu so that the goal is selected in the map.
+ -- Improved the display and interaction of selected 
+    map items.  Selected poses are now always drawn on
+    top with an opaque background.  When the mouse enters
+    a selected item, the item gains focus (i.e. it will 
+    be picked if the mouse is pressed).  This should make it
+    easier to interact with multiple overlapping items, 
+    especially when used in conjunction with "Find on Map".
+ -- Fixed crash in importing .2d files.
+ -- Corrected an intermittent error in the location of goals when 
+    importing .2d files.
+ -- Removed an erroneous extra space from the output Cairn lines 
+    for map objects that do not have the "from-to" attributes.
+ -- Fixed problems reading a map file that had objects at
+    non-integral poses.
+ -- Changes were made to ArPose to ensure that the heading
+    is in the range -180 to 180.
+ -- Fixed a crash that occurred when a map file is inserted
+    into another.  If the map legend was previously displayed
+    and the two map files contained different data types, 
+    then MobilePlanner crashed.
+ -- Fixed the Select File dialog so that it does not enter
+    an infinite error message loop when the user selects
+    a drive that is not accessible.
+ -- Fixed potential memory issues.
+ -- Added support for the Windows XP style.
+ -- Do not open invalid scan (.2d) files.  Valid scan files
+    start with LaserOdometryLog.
+ -- Warn the user when a scan file contains GPS data.  These
+    files cannot be processed correctly by MobilePlanner yet.
+ -- Added support for a new "raw" mode in the scan processing.
+    This mode may be turned on by clicking the Scan Tools, 
+    Settings button, selecting the Scan tab, and changing the
+    Processing Mode item to Raw.
+ -- Fixed the File, Map Insert... feature when a map contains
+    only one type of scan data.
+ -- Fixed the Map, Origin menu item so that the origin is
+    correctly drawn when multiple map files are open.
+ -- Attempted to fix an intermittent bug that prevents the 
+    map's points and lines from being displayed.
+ -- When a map is being inserted, draw the containing map's
+    origin on top of the insert region instead of below it.
+ -- Added a Duplicate option to the context menu displayed 
+    when right-clicking on items in the map.  The newly 
+    created item will appear in the center of the map view.
+ -- Corrected a crash that occurred when the user tried to
+    save a remote file after the connection to the robot
+    was lost.
+ -- Fixed an intermittent crash that occurred when the 
+    robot connection was lost while the remote file was
+    being saved.
+ -- Fixed a crash that occurred during File, Insert Map... 
+    when the inserted map defined new data types.
+ -- Added meta information to the map file about the scan
+    that was used to create the map and how long it took to
+    process it.
+ -- Added a "tear-off" menu item to the Main Menu, Map, Data
+    submenu.  This appears as a dashed line at the top of the 
+    Data submenu.  When it is selected, the data items appear
+    in a standalone window so that they can be toggled easily.
+
+
+Mapper3 2.1.9
+August 3, 2007
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- The map file can no longer contain any comments (e.g. text 
+    that follows the "#" or ";" characters).  These characters 
+    may now be used in the map info definitions.
+ -- Corrected an error that caused the "%" character to be  
+    followed by a random number when written to a map file.
+ -- When a robot file list has been sorted, the selected sort 
+    column and direction is used the next time that the file
+    list is displayed.
+ -- Corrected another potential crash when a robot disconnects.
+ -- Added more information (specifically, the robot ID) to the 
+    output log.
+    
+
+Mapper3 2.1.8
+July 25, 2007
+-------------------
+
+Miscellaneous bug fixes:
+
+ -- Fixed an intermittent crash that occurred when a robot 
+    disconnects from Mapper3.
+
+Mapper3 2.1.7
+July 19, 2007
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Fixed a memory leak that occurred when closing a map file.
+ -- Fixed an intermittent crash that occurred when a remote file
+    is opened and a robot disconnects from Mapper3.
+ -- Corrected an error that occasionally caused Mapper3
+    to hang when a scan (.2d) file was opened.
+ -- Fixed the "File, Insert Map..." feature so that the inserted 
+    map is no longer cached after the insertion is finished.  
+ -- Improved the performance of closing very large map files.
+ -- When map windows have been tiled or cascaded and another map
+    is subsequently opened, the new map is no longer maximized 
+    in the workspace.
+ -- Improved the user interaction with map items that have been
+    tagged as "data" in the MapInfo.  The "data" types no longer
+    appear as an option in the Type combo box for normal map 
+    items. Similar to map lines, the "data" items are no longer 
+    selected by the marquis rectangle; it is necessary to hold 
+    down the Ctrl key when selecting multiple "data" items. 
+
+
+Mapper3 2.1.6
+May 30, 2007
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Corrected an error in the Scan Settings window.  When the user
+    manually types a number into one of the spin box editors, the
+    prompt to restart the scan is now correctly displayed.  
+ -- Added notification that the Clean Grid Size parameter is now 
+    also used in the initial scanning process.  When the parameter
+    has been changed, the prompt to restart the scan is also 
+    displayed.
+ -- Fixed an error in the File Download/Upload window.  When 
+    the window is displayed, the directory contents are now 
+    correctly refreshed.
+
+
+Mapper3 2.1.5
+May 5, 2007
+-------------------
+
+Miscellaneous bug fixes:
+
+ -- Corrected an error in the Edit Map Item window that occurred
+    when subtypes are defined for multiple MapInfo types.  The 
+    selected subtype previously changed on occasion when the user
+    clicked the OK button.
+  
+
+Mapper3 2.1.4
+April 28, 2007
+-------------------
+
+Miscellaneous bug fixes:
+  
+ -- Corrected an error in the order of destructors that caused an
+    intermittent crash when a robot disconnected.
+
+
+Mapper3 2.1.3
+April 27, 2007
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Fixed errors related to subdirectory selection in the Open File 
+    on Robot dialog.
+ -- Fixed various memory leaks that occurred when a robot disconnected.
+
+ 
+Mapper3 2.1.2
+April 4, 2007
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Modified the MapInfo definitions so that the IsData attribute 
+    applies to all data types.  Maps can now be configured so that
+    goals and other locations can be inserted into another map.
+ -- Added the MapInfo NameRequired attribute to location types.  The
+    default value is true, but it can be overridden if the locations
+    do not require a name.
+ -- Fixed the toolips on locations in the map view so that if the
+    location does not have a name but does have a description, the 
+    tooltip is still displayed.
+ -- Fixed a bug in File, Insert Map... so that the most recent
+    folder is now correctly displayed in the File Open window.
+    
+
+Mapper3 2.1.1
+March 28, 2007
+-------------------  
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Modified the Download/Upload window to include a "Select All" and
+    a "Clear All" button for each directory list.
+ -- Fixed a bug that occurred when sorting a directory list while files
+    were selected.  The original selection is now maintained.
+ -- Fixed a bug that occasionally caused the crash dump file to be 
+    written to an incorrect directory.
+ -- Added an option to save scan (.2d) files as a "corrected scan file"
+    (.c2d).
+ -- Removed an unused scan parameter, max scan distance.
+
+
+Mapper3 2.1.0
+February 23, 2007
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Made substantial changes related to multi-threading in an attempt
+    to reduce the number of crashes on dual processor PCs.
+
+
+Mapper3 2.0.1
+January 30, 2007
+-------------------
+
+Miscellaneous bug fixes:
+
+ -- Fixed a crash that occurred when a remote file was opened and the
+    robot disconnected.  If the user subsequently selected File, 
+    Open on Robot and then clicked the Cancel button on the login
+    window, then Mapper3 would crash.
+ -- Incorporated the latest version of ScanStudio.
+
+
+
+Mapper3 1.4.4
+January 10, 2007
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Fixed a bug in the Advanced Areas Edit window that occurred when 
+    sector types were defined in the map file after any that are 
+    "always hidden".  The Type combo box did not display the correct 
+    type.
+ -- Added a new "Step" button to the Scan Tools.  Click this button 
+    to pause the processing and add a single scan.  The current scan 
+    number is now displayed in the status bar.  These features are 
+    both applicable only while scans are being added (i.e. before 
+    registration and cleaning).
+ -- Added a new Scan Tools, Settings, Processing preference that 
+    allows multiple scan files to be processed in "batch mode".  When 
+    running in batch mode, each scan file is automatically saved as a 
+    map file and closed; processing of the next file occurs without 
+    operator intervention (as long as no errors occur).
+ -- Modified the Open File dialog so that multiple map or scan files
+    can be opened at once.
+ -- Increased the maximum length of a map line to 10,000 characters.
+
+
+Mapper3 1.4.3
+December 21, 2006
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+ 
+ -- Fixed a memory leak that occurred when saving the map.
+ -- When the user creates an unusually small forbidden area or other 
+    map object, a warning is now displayed.
+
+
+Mapper3 1.4.2
+December 6, 2006
+-------------------
+
+Miscellaneous bug fixes:
+
+ -- Fixed a crash that occurred when opening a map file on a robot
+    server (introduced in 1.4.1).
+ -- Fixed the File, Open window so that the most recently used 
+    directory path is displayed.  
+ -- Corrected the File, Download/Upload window so that the Look In: 
+    menu on the local computer works correctly with multiple drives.
+ -- Improved the display of overlapping goal names in the map.  When 
+    the goal has mouse focus, the name is drawn with an opaque 
+    background.
+
+
+Mapper3 1.4.1
+December 1, 2006
+-------------------
+
+Miscellaneous bug fixes and enhancements:
+
+ -- Added a description attribute to all map objects.  The description
+    can be entered in the map item edit window, and it is displayed in
+    the map object's tooltip. (For Aria users, note that the unused
+    ArMapObject fileName attribute has been deprecated.)
+ -- Added a new Advanced Points shape type, Label, that allows the user 
+    to mark the map with descriptive text labels.  In order to use this 
+    feature, the map file's MapInfo must be updated.
+ -- Added new MapInfo parameters to allow specification of the desired 
+    font size of a goal or dock label.  (See the description of 
+    FtSize in the ArMap header file.)
+ -- Added the ability to save the current map rotation as the default 
+    to be used for map display (in Mapper3 and in MobileEyes).
+    To save the rotation, choose Main Menu, Map, Rotate, Save as Default.
+
+
+Mapper3 1.3.11
+November 10, 2006
+--------------------
+
+Added additional parameters to control the creation of maps from
+scan (.2d) files.  These are accessed from Scan Tools, Settings and
+are contained in the Scan tab.  
+
+
+
+Mapper3 1.3.10
+October 20, 2006
+--------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Modified the behavior of the Draw tool buttons that have popup
+    menus.  When a popup menu item is selected, the associated Draw
+    tool button is automatically turned on.
+ -- Fixed an error in the Edit map item window that caused coordinate
+    values of 0 to not be displayed under certain circumstances.
+
+
+Mapper3 1.3.9
+September 25, 2006
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+ -- Fixed a crash that occurred when closing the map window before the
+    map had finished loading.
+ -- Fixed an error in the saving of rotated maps to an image file.  
+ -- Changed the toolbar draw labels for the optional custom map items.  
+    "Sector" is now "Advanced Areas" and "Boundary" is "Advanced Lines".
+ -- Improved the logging of data when a crash occurs on Windows.  A 
+    "mini-dump" file (named Mapper3ErrorDump_<Version>.dmp) is
+    now created after a crash in the Mapper3 directory.  By 
+    default, this dump file only contains stack trace information. 
+    For problematic crashes that require more information, start 
+    Mapper3 with the -debugDumpData option.
+
+Mapper3 1.3.8
+September 5, 2006
+-------------------
+
+Miscellaneous bug fixes:
+ -- Fixed a crash that occurred when undoing and redoing the rotation
+    of map inserts.
+ -- Fixed a crash that occurred when closing Mapper3 while a 
+    map insert is in progress.
+ -- Corrected a problem setting the rotation of a rectangle to 0 or 180 
+    in the edit dialog.
+ -- Corrected the "on" state of the Draw tools when switching between 
+    multiple open maps.
+ -- Fixed an intermittent crash that occurred when closing Mapper3.
+
+
+Mapper3 1.3.7
+August 15, 2006
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Removed calls that may have caused the GUI to be updated outside
+    of the main thread when a robot connects to the central server.
+ -- Improved the display of overlapping sectors and forbidden areas.
+    The outline of all sectors and forbidden areas is now always 
+    drawn on top.
+ -- Modified the Measure line so that it doesn't call the map update
+    as frequently (in an attempt to fix an intermittent crash).
+ -- Changed the logic when the main window closes so that it also 
+    proceeds if the active edit window is in the process of closing.  
+
+
+Mapper3 1.3.6
+July 19, 2006
+-------------------
+
+Corrected the kernel memory issue on Windows when using large maps
+and removed the temporary workaround (in version 1.3.5).  
+
+
+Mapper3 1.3.5
+July 19, 2006
+-------------------
+
+Added a temporary workaround to a kernel memory issue on Windows when
+using large maps.  A registry key can be set to turn off the creation 
+of the map data lines.
+
+
+Mapper3 1.3.4
+July 12, 2006
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Increased the timeout when connecting to robots through a central
+    server in order to reduce the likelihood that their initialization
+    will be postponed.
+
+
+
+Mapper3 1.3.3
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Fixed errors that occurred when the user indicates that the robot 
+    configuration should be modified to use the current map.  In 
+    particular, if an instance of MobileEyes changes the configuration 
+    after Mapper3 has been started, then Mapper3 now 
+    correctly updates the configuration data.
+
+
+
+Mapper3 1.3.1
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- Reinserted the data Line draw tool, but it is now hidden by default.
+    Use the Toolbars, Customize... option to access it.
+ -- Mapper3 no longer disconnects from robots that don't support the 
+    desired functionality (such as file transfers). 
+    The connection is maintained so that the user can access the features
+    that are supported.  
+ -- When File, Save on Robot... fails, the user is now notified of the 
+    error.
+ -- Corrected problems with erasing data lines.  The lines now retain 
+    their initial angle, instead of drifting slightly.  In addition, 
+    the undo feature re-inserts only the original line, instead of all
+    of the interim ones.
+ -- Fixed the changed-indicator in the window title when all changes are
+    undone.
+ -- Removed temp files from the file history in the File menu.
+ -- Fixed problems that occurred when the user cancels a File, Save on
+    Robot... request in progress.  The request is now cancelled on the 
+    server (i.e. the file is not written) and the local file returns to 
+    its original state.     
+ -- Fixed a bug that caused maps opened on a robot to be displayed with 
+    a yellow background when the robot is not in safe drive mode.
+
+
+
+Mapper3 1.3.0
+-------------------
+
+Miscellaneous bug fixes and user interface enhancements:
+
+ -- After processing a scan, if the map cannot be successfully saved, 
+    then the user will now be warned when the Finish button is clicked.  
+    (Previously, the scan would simply close and all work would be lost.)
+ -- Modified the unhandled exception filter to prevent it from 
+    being called recursively if another exception occurs during 
+    execution of the filter.  This will hopefully preserve as much 
+    information as possible about the initial exception in the error 
+    report.
+ -- Corrected the Boundary draw tool so that it is always initialized 
+    with a valid subtype that can be selected in the drop down menu.
+ -- Fixed an error in the Insert Map... feature that caused the entire
+    insert to be selectable (and moveable) when the region was cancelled 
+    by dragging the mouse outside of the map window.
+ -- Fixed the Robot Servers combo box so that robots are displayed in 
+    order of last use.
+ -- Fixed the File menu so that the file name separators are always 
+    correct for the platform, and duplicate file names do not appear.
+ -- Fixed problems that occurred when a map was started to be saved on 
+    a robot, but the file transfer was cancelled by the user.  The map now
+    retains the correct modified state.
+ -- Fixed the Edit Map Item window so that it closes when the OK or Cancel 
+    button is clicked.  Previously, under certain circumstances, multiple 
+    clicks were required to close the window.
+ -- Fixed a processing error that occurred when the user cancelled a 
+    file download or upload.  On certain occasions, Mapper3 would 
+    enter a tight execution loop, possibly blocking the cancellation from
+    completing.
+ -- Fixed an error that prevented the Home (point or area) name from being 
+    saved.
+
+
+Mapper3 1.2.13
+
+-------------------------
+
+Changes to the readme and license text.
+
+
+Mapper3 1.2.12
+
+-------------------------
+
+Corrected the location of icons in the installer.
+
+
+Mapper3 1.2.11
+February 24, 2006
+-------------------------
+
+Improved support for the new reflector items in the map.  The reflectors 
+will be inserted along with the map points and lines into a containing map. 
+The containing map's MapInfo lines will be updated to include reflectors, 
+if necessary.  (This feature requires that the Reflector MapInfo line 
+has the parameter isData=1.)  In addition, the display of reflectors may 
+now be controlled via the Map, Data main menu item.
+
+Miscellaneous bug fixes and user interface enhancements:
+ -- Fixed bug that prevented the map view preferences from being saved
+    correctly in the file history.
+ -- Fixed bug when the Line Draw Tool is on and the Map, Data, Points 
+    item is subsequently selected.
+
+
+Mapper3 1.2.10
+February 7, 2006
+-------------------------
+
+Incorporated the latest ScanStudio changes that allow reflectors to be
+added to the map data. 
+
+Miscellaneous bug fixes and user interface enhancements:
+ -- Fixed a map insert bug that prevented the insert regions from being 
+    drawn (introduced in 1.2.8).  Also cleared the map selection
+    after the insertion completes in order to eliminate the stray
+    rotate handle.
+ -- Added the application name and version number to the debug error 
+    report.
+ -- Changed the name of the registry key in which user preferences 
+    are saved to MobileRobots. (Previous preferences are automatically
+    copied to the new key.)
+
+
+Mapper3 1.2.8
+December 22, 2005
+-------------------------
+
+Added a global exception handler for the Windows platform in order
+to improve debugging capabilities.
+
+Miscellaneous bug fixes and user interface enhancements:
+ -- Disable the Line Draw tool button when inserting a map.
+ -- Turn off the Select tool button when another map mode (such as 
+    picking goals or inserting a map) is active.
+ -- Fixed bug when saving the map as an image, and the image was too 
+    big to be allocated.  The user is now notified of the situation and 
+    advised of possible solutions.
+
+
+Mapper3 1.2.6
+August 24, 2005
+-------------------------
+
+-- Forbidden areas and other rectangular areas can now be rotated.
+   WARNING: Old versions of ARNL (1.3 and earlier) will not be able to 
+   interpret the rotation; to make a map compatible with old versions,
+   make sure the forbidden areas have a rotation of 0 (see the status bar
+   during rotation).
+-- Lines may be erased with the eraser
+-- More information is displayed in the status bar while modifying map objects
+-- Improved editing of remote maps on robots
+-- Has been tested on Windows XP

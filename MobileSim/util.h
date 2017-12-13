@@ -25,8 +25,8 @@
  * and long_arg must be literal string constants (ignored if "")
  */
 #define command_argument_match(arg_given, short_arg, long_arg) \
-  ( (strlen(short_arg) > 0 && strcmp(arg_given, "-"short_arg) == 0) || \
-    (strlen(long_arg) > 0 && strcmp(arg_given, "--"long_arg) == 0) || \
-    (strlen(long_arg) > 0 && strcmp(arg_given, "-"long_arg) == 0)  )
+  ( (strlen(short_arg) > 0 && strcmp(arg_given, "-" short_arg) == 0) || \
+    (strlen(long_arg) > 0 && strcmp(arg_given, "--" long_arg) == 0) || \
+    (strlen(long_arg) > 0 && strcmp(arg_given, "-" long_arg) == 0)  )
 
 #endif

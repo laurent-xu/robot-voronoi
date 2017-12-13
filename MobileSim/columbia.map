@@ -8,7 +8,7 @@ LineMinPos: -4756 -26950
 LineMaxPos: 19533 19394
 NumLines: 470
 LinesAreSorted: true
-OriginLatLonAlt: 42.807191 -71.578661 72.000000
+OriginLatLongAlt: 42.807191 -71.578661 72.000000
 MapInfo: SectorType Name=BadGPSSector "Label=BadGPS" "Desc=Area where GPS is known to be unreliable" Shape=Plain Color0=0x888888
 MapInfo: BoundaryType Name=Measure "Label=Measuring stick" "Desc=Line that displays its length" Shape=Measure Color0=0xdd03e0
 MapInfo: GoalType Name=Goal
@@ -19,9 +19,11 @@ Cairn: ForbiddenLine -4959 -18161 0.000000 "" ICON "" -4959 -18161 5637 -18160
 Cairn: ForbiddenLine -4880 -20700 0.000000 "" ICON "" -4880 -20700 5639 -20701
 Cairn: ForbiddenArea 0 0 0.000000 "" ICON "" -4540 -10800 -3080 -7780
 Cairn: Goal -3961 -8481 0.000000 "" ICON "Inside Forbidden Area"
+Cairn: Goal -3196 4846 0.000000 "" ICON "Goal 1"
+Cairn: Goal -3195 6869 0.000000 "" ICON "Goal 2"
 Cairn: GoalWithHeading -1860 -22440 -48.576300 "" ICON "Lobby door"
 Cairn: Goal -1603 -13238 0.000000 "" ICON "Impossible Goal"
-Cairn: GoalWithHeading -785 177 0.000000 "" ICON "dock"
+Cairn: Goal -1550 5909 0.000000 "" ICON "Goal 3"
 Cairn: RobotHome -182 176 0.000000 "" ICON ""
 Cairn: ForbiddenArea 0 0 0.000000 "" ICON "" 280 -14900 3900 -13000
 Cairn: ForbiddenLine 540 19340 0.000000 "" ICON "" 540 19340 540 9020

@@ -1,0 +1,79 @@
+
+Installing MobileSim
+====================
+
+
+To install on Linux from a compressed tar archive 
+(MobileSim-@MOBILESIM_VERSION_NODASH@.tgz or MobileSim-src-@MOBILESIM_VERSION_NODASH@.tgz)
+------------------------------------------------
+
+1. Unpack the .tgz file using tar:
+  tar xzf MobileSim-@MOBILESIM_VERSION_NODASH@.tgz
+or
+  tar xzf MobileSim-src-@MOBILESIM_VERSION_NODASH@.tgz
+
+2. Become the root user:
+  su
+
+3. Use 'make install' to install MobileSim in /usr/local/MobileSim:
+  make install
+
+
+-> If using the MobileSim source code (MobileSim-src package), read the 
+   README.src.txt file
+
+
+
+
+
+To install on Linux from a Debian package
+(mobilesim_@MOBILESIM_VERSION_NODASH@_i386.deb)
+-----------------------------------------
+
+1. Become the root user:
+  su
+
+2. Use dpkg to install MobileSim in /usr/local/MobileSim, and place symbolic
+links in /usr/bin etc.:
+  dpkg -i mobilesim_@MOBILESIM_VERSION_NODASH@_i386.deb
+
+3. If dependencies are missing, install them using apt-get.
+
+4. To uninstall later, use apt-get:
+  apt-get remove mobilesim
+
+
+
+
+
+To install on Linux from a RedHat package
+(MobileSim-@MOBILESIM_VERSION_NODASH@.rpm)
+-----------------------------------------
+
+1. Become the root user:
+  su
+
+2. Use rpm to install MobileSim in /usr/local/MobileSim, and place symbolic
+links in /usr/bin etc.:
+  rpm -i MobileSim-@MOBILESIM_VERSION_NODASH@.rpm
+
+3. If dependencies are missing, download them if neccesary, and install the
+rpm package files using rpm.
+
+4. To uninstall later, use rpm -E:
+  rpm -E MobileSim
+
+
+
+
+To install on Windows
+(MobileSim-@MOBILESIM_VERSION_NODASH@.exe
+-----------------------------------------
+
+Run the installer program, and follow the steps.  To uninstall later,
+run the "uninstall" program in Program Files -> MobileRobots -> MobileSim,
+or use Add/Remove Programs in the System preferences.
+
+
+
+

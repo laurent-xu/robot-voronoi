@@ -5,7 +5,7 @@ uninstall: uninstall-Mapper3
 
 # Installation root directory, you can override in the shell 
 ifndef DESTDIR
-DESTDIR=
+DESTDIR=${PWD}
 endif
 
 

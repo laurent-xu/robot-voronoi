@@ -24,6 +24,8 @@ robots@mobilerobots.com or
 MobileRobots Inc, 10 Columbia Drive, Amherst, NH 03031; 800-639-9481
 */
 #include <Aria.h>
+#include <cmath>
+#include <iostream>
 
 /** @example simpleMotionCommands.cpp example showing how to connect and send
  * basic motion commands to the robot
@@ -46,16 +48,53 @@ MobileRobots Inc, 10 Columbia Drive, Amherst, NH 03031; 800-639-9481
  * ethernet-serial bridge.)
  */
 
+void goTo(double dst_x, double dst_y, ArRobot& robot)
+{
+	ArPose destination(dst_x, dst_y);
+	double rot_vel = 10.;
+	double Te = 1000;
+	double vel = 250.;
+	auto src = robot.getPose();	
+	double src_x = src.getX();
+	double src_y = src.getY();
+	double src_angle = src.getTh();
+	double var_x = dst_x - src_x;
+	double var_y = dst_y - src_y;
+	double var_distance = sqrt(var_x * var_x + var_y * var_y);
+	double var_angle = robot.findDeltaHeadingTo(destination);
+	std::cerr << src_x << " " << src_y << " " << dst_x << " " << dst_y << " " << var_distance << " " << var_angle << std::endl;
+	robot.lock();
+	robot.setVel(0.);
+	double actual_rot_vel = var_angle / abs(var_angle) * rot_vel;
+	std::cerr << actual_rot_vel << std::endl;
+	robot.setRotVel(actual_rot_vel);
+	robot.unlock();
+	ArUtil::sleep(abs(var_angle) / abs(actual_rot_vel) * Te);
+	robot.lock();
+	robot.setVel(0.);
+	robot.setRotVel(0);
+	robot.unlock();
+	robot.lock();
+	ArUtil::sleep(Te * 2);
+	robot.setVel(vel);
+	robot.setRotVel(0);
+	robot.unlock();
+	ArUtil::sleep(var_distance / vel * Te);
+	robot.lock();
+	robot.setVel(0.);
+	robot.setRotVel(0);
+	robot.unlock();
+	ArUtil::sleep(Te * 2);
+	std::cerr << "test" << robot.findDeltaHeadingTo(destination) << std::endl;
+}
+
 int main(int argc, char **argv)
 {
 
   Aria::init();
   ArRobot robot;
+
   ArArgumentParser parser(&argc, argv);
-  parser.loadDefaultArguments();
-
-  ArLog::log(ArLog::Terse, "WARNING: this program does no sensing or avoiding of obstacles, the robot WILL collide with any objects in the way! Make sure the robot has approximately 3 meters of free space on all sides.");
-
   // ArRobotConnector connects to the robot, get some initial data from it such as type and name,
   // and then loads parameter files for this robot.
   ArRobotConnector robotConnector(&parser, &robot);
@@ -76,24 +115,8 @@ int main(int argc, char **argv)
     return 1;
   }
   
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Connected.");
-
-  // Start the robot processing cycle running in the background.
-  // True parameter means that if the connection is lost, then the 
-  // run loop ends.
   robot.runAsync(true);
 
-  // Print out some data from the SIP.  
-
-  // We must "lock" the ArRobot object
-  // before calling its methods, and "unlock" when done, to prevent conflicts
-  // with the background thread started by the call to robot.runAsync() above.
-  // See the section on threading in the manual for more about this.
-  // Make sure you unlock before any sleep() call or any other code that will
-  // take some time; if the robot remains locked during that time, then
-  // ArRobot's background thread will be blocked and unable to communicate with
-  // the robot, call tasks, etc.
-  
   robot.lock();
   ArLog::log(ArLog::Normal, "simpleMotionCommands: Pose=(%.2f,%.2f,%.2f), Trans. Vel=%.2f, Rot. Vel=%.2f, Battery=%.2fV",
     robot.getX(), robot.getY(), robot.getTh(), robot.getVel(), robot.getRotVel(), robot.getBatteryVoltage());
@@ -107,61 +130,11 @@ int main(int argc, char **argv)
   ArLog::log(ArLog::Normal, "simpleMotionCommands: Driving forward at 250 mm/s for 5 sec...");
   robot.lock();
   robot.enableMotors();
-  robot.setVel(250);
-  robot.unlock();
-  ArUtil::sleep(5000);
-
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Stopping.");
-  robot.lock();
-  robot.stop();
   robot.unlock();
   ArUtil::sleep(1000);
 
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Rotating at 10 deg/s for 5 sec...");
-  robot.lock();
-  robot.setRotVel(10);
-  robot.unlock();
-  ArUtil::sleep(5000);
+  goTo(100, 100, robot);
 
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Rotating at -10 deg/s for 10 sec...");
-  robot.lock();
-  robot.setRotVel(-10);
-  robot.unlock();
-  ArUtil::sleep(10000);
-
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Driving forward at 150 mm/s for 5 sec...");
-  robot.lock();
-  robot.setRotVel(0);
-  robot.setVel(150);
-  robot.unlock();
-  ArUtil::sleep(5000);
-
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Stopping.");
-  robot.lock();
-  robot.stop();
-  robot.unlock();
-  ArUtil::sleep(1000);
-
-
-  // Other motion command functions include move(), setHeading(),
-  // setDeltaHeading().  You can also adjust acceleration and deceleration
-  // values used by the robot with setAccel(), setDecel(), setRotAccel(),
-  // setRotDecel().  See the ArRobot class documentation for more.
-
-  
-  robot.lock();
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Pose=(%.2f,%.2f,%.2f), Trans. Vel=%.2f, Rot. Vel=%.2f, Battery=%.2fV",
-    robot.getX(), robot.getY(), robot.getTh(), robot.getVel(), robot.getRotVel(), robot.getBatteryVoltage());
-  robot.unlock();
-
-  
-  ArLog::log(ArLog::Normal, "simpleMotionCommands: Ending robot thread...");
-  robot.stopRunning();
-
-  // wait for the thread to stop
-  robot.waitForRunExit();
-
-  // exit
   ArLog::log(ArLog::Normal, "simpleMotionCommands: Exiting.");
   Aria::exit(0);
   return 0;

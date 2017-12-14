@@ -13,4 +13,4 @@ MobileSim-lib:
 	make -C MobileSim
 
 Mapper-bin:
-	make -C Mapper
+	make install -C Mapper
